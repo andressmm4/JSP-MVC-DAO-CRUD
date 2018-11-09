@@ -1,0 +1,11 @@
+body{
+    font-family: "Century Gothic";
+    text-align: center;
+}
+.content{
+    margin-left: 30%;
+    margin-right: 30%;
+}
+table{
+    width: 100%;
+}
