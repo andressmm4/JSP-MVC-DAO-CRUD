@@ -53,6 +53,7 @@ public class PersonaDAO implements CRUD {
             con =cn.getConnection();
             ps = con.prepareStatement(sql);
             ps.executeQuery();
+            
         } catch (Exception e) {
         }
         

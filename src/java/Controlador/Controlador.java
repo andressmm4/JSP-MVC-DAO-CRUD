@@ -1,6 +1,8 @@
 /*@author Andres Montenegro */
 package Controlador;
 
+import Modelo.Persona;
+import ModeloDAO.PersonaDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -15,6 +17,8 @@ public class Controlador extends HttpServlet {
     String listar ="vistas/listar.jsp";
     String add ="vistas/add.jsp";
     String edit ="vistas/edit.jsp";
+    Persona p = new Persona();
+    PersonaDAO dao = new PersonaDAO();
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -40,7 +44,15 @@ public class Controlador extends HttpServlet {
         String action = request.getParameter("accion");
         if(action.equalsIgnoreCase("listar")){
             acceso=listar;
-        }else if(action.equalsIgnoreCase("Agre")){
+        }else if(action.equalsIgnoreCase("add")){
+            acceso=add;
+        }
+        else if(action.equalsIgnoreCase("Agregar")){
+            String dni= request.getParameter("txtDni");
+            String nomb= request.getParameter("txtNomb");
+            p.setDni(dni);
+            p.setNomb(nomb);
+            dao.add(p);
         }
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
         vista.forward(request, response);
